@@ -7,9 +7,14 @@ type Data = {
 
 export const runtime = 'edge';
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
-  res.status(200).json({ name: 'John Doe' })
+export default async function (req) {
+  return new Response(
+      JSON.stringify({ name: 'John Doe' }),
+      {
+        status: 200,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+  )
 }
